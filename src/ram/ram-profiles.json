@@ -1,0 +1,92 @@
+{
+  "description": "FireWork OS - RAM Profile Configuration",
+  "version": "1.0",
+  "thresholds": {
+    "survival_max_gb": 1.5,
+    "balanced_max_gb": 3.0,
+    "comfort_max_gb": 6.0
+  },
+  "profiles": {
+    "survival": {
+      "name": "Survival",
+      "description": "Untuk laptop sangat kentang (<= 1.5 GB RAM)",
+      "color": "#E74C3C",
+      "zram": {
+        "enabled": true,
+        "size_gb": 4,
+        "algorithm": "lz4",
+        "priority": 100
+      },
+      "swappiness": 100,
+      "vfs_cache_pressure": 50,
+      "kde_compositor": "off",
+      "kde_animations": "off",
+      "baloo_indexer": false,
+      "autostart_level": "minimal",
+      "disabled_services": [
+        "bluetooth.service",
+        "cups.service",
+        "avahi-daemon.service",
+        "ModemManager.service"
+      ]
+    },
+    "balanced": {
+      "name": "Balanced",
+      "description": "Seimbang untuk laptop 2-3 GB RAM (default)",
+      "color": "#FF6B00",
+      "zram": {
+        "enabled": true,
+        "size_gb": 3,
+        "algorithm": "lz4",
+        "priority": 100
+      },
+      "swappiness": 60,
+      "vfs_cache_pressure": 100,
+      "kde_compositor": "opengl",
+      "kde_animations": "medium",
+      "baloo_indexer": false,
+      "autostart_level": "light",
+      "disabled_services": [
+        "ModemManager.service"
+      ]
+    },
+    "comfort": {
+      "name": "Comfort",
+      "description": "Nyaman untuk multitasking (3-6 GB RAM)",
+      "color": "#2ECC71",
+      "zram": {
+        "enabled": true,
+        "size_gb": 2,
+        "algorithm": "lzo-rle",
+        "priority": 100
+      },
+      "swappiness": 30,
+      "vfs_cache_pressure": 100,
+      "kde_compositor": "opengl",
+      "kde_animations": "full",
+      "baloo_indexer": true,
+      "baloo_profile": "idle-only",
+      "autostart_level": "normal",
+      "disabled_services": []
+    },
+    "performance": {
+      "name": "Performance",
+      "description": "Maksimal untuk hardware kuat (> 6 GB RAM)",
+      "color": "#9B59B6",
+      "zram": {
+        "enabled": false,
+        "size_gb": 0,
+        "algorithm": "lz4",
+        "priority": 0
+      },
+      "swappiness": 10,
+      "vfs_cache_pressure": 150,
+      "kde_compositor": "opengl",
+      "kde_animations": "full",
+      "baloo_indexer": true,
+      "baloo_profile": "full",
+      "autostart_level": "all",
+      "disabled_services": []
+    }
+  }
+}
